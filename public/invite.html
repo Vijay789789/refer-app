@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join SharingApp & Get ₹200</title>
+    <style>
+        :root {
+            --primary: #3182CE;
+            --primary-dark: #2B6CB0;
+            --bg-color: #F7FAFC;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-main: #2D3748;
+            --text-muted: #718096;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #EBF8FF 0%, #E2E8F0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 20px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(49, 130, 206, 0.3);
+            transform: rotate(-5deg);
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #1A202C;
+        }
+
+        p.subtitle {
+            margin: 0 0 32px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        .code-box {
+            background: #EDF2F7;
+            border: 2px dashed #CBD5E0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .code-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .code-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: 4px;
+            user-select: all;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(49, 130, 206, 0.3);
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(49, 130, 206, 0.4);
+            background: var(--primary-dark);
+        }
+        
+        .steps {
+            margin-top: 32px;
+            text-align: left;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: #E2E8F0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-main);
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+        
+        .copied-toast {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #48BB78;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .copied-toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="icon-wrapper">🎁</div>
+            <h1>You've Been Invited!</h1>
+            <p class="subtitle">Join SharingApp today and get an instant <strong>₹200 Signup Bonus</strong> to your wallet.</p>
+
+            <div class="code-box" onclick="copyCode()">
+                <div class="copied-toast" id="toast">Copied!</div>
+                <span class="code-label">Use Referral Code</span>
+                <span class="code-value" id="refCode">{{REFERRAL_CODE}}</span>
+                <p style="font-size: 12px; color: var(--text-muted); margin: 8px 0 0;">(Tap to copy)</p>
+            </div>
+
+            <a href="/assets/app.apk" class="btn" download="SharingApp.apk">Download Android App ⬇️</a>
+            
+            <div class="steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Download and install the app</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Sign up with your phone number</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Enter the referral code to get ₹200</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyCode() {
+            var codeText = document.getElementById('refCode').innerText;
+            navigator.clipboard.writeText(codeText).then(function() {
+                var toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(function() {
+                    toast.classList.remove('show');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>

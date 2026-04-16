@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# env files
+.env
+.env.*
+
+# node
+node_modules/
+
+# logs
+*.log
+server.log
+
+# build
+android/.cxx
+android/build/
+android/app/build/
+
+# misc
+.tmp/
+.cache/
